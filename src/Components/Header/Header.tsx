@@ -14,7 +14,7 @@ const Header: React.FC = () => {
 
           .header {
             font-family: 'Iceland', serif;
-            position: fixed;
+            position: relative;
             top: 0;
             left: 0;
             width: 100%;
