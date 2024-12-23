@@ -68,15 +68,15 @@ const Header: React.FC = () => {
 
           @media (max-width: 768px) {
             .header__title {
-              font-size: 7vw;
+              font-size: 10vw;
             }
 
           .header__logo img {
-            max-width: 7vw; /* Use viewport width for responsiveness */
+            max-width: 10vw; /* Use viewport width for responsiveness */
           }
 
           .icon-button img {
-            max-width: 3vw;
+            max-width: 5vw;
           }
           
         `}
