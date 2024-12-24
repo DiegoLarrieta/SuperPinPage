@@ -78,6 +78,9 @@ const Header: React.FC = () => {
           .icon-button img {
             max-width: 5vw;
           }
+          .cart-icon {
+            display: none; /* Hide cart icon */
+          }
           
         `}
       </style>
