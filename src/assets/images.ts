@@ -14,6 +14,10 @@ import SpinBeBig from "./ProductImages/maquina3.jpg"
 import Spin6 from "./ProductImages/spin6.jpg"
 import Spin95main from "./ProductImages/B09LGSD9BP.SIDE.jpg"
 import Spin76main from "./ProductImages/pin_7.6mm_imagen_ofc-removebg-preview-removebg-preview.png"
+
+import Paso1Video from "./Videos/Paso1.mp4"
+import Paso2Video from "./Videos/Paso2.mp4"
+import Paso3Video from "./Videos/Paso3.mp4"
 export {
   LogoBlanco,
   LogoNegro,
@@ -28,4 +32,7 @@ export {
   SpinBeBig,
   Spin76main,
   Spin95main,
+  Paso1Video,
+  Paso2Video,
+  Paso3Video,
 }

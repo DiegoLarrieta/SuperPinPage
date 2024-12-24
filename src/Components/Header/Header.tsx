@@ -1,6 +1,8 @@
 import { LogoBlanco, ShopIcon, HamburgerIcon, CloseMenuIcon } from "../../assets/images";
 import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
+import { Link } from "react-router-dom"; // Import Link for routing
+
 
 const Header: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
@@ -126,7 +128,9 @@ const Header: React.FC = () => {
       </style>
       <header className="header">
         <div className="header__logo">
-          <img src={LogoBlanco} alt="Logo" />
+          <Link to="/">
+            <img src={LogoBlanco} alt="Logo" />
+          </Link>
         </div>
         <div className="header__title-container">
           <div className="header__title">SUPER</div>
