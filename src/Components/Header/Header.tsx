@@ -1,12 +1,12 @@
 import { LogoBlanco, ShopIcon, HamburgerIcon, CloseMenuIcon } from "../../assets/images";
 import React, { useState } from "react";
-import Navbar from "../Navbar/Navbar";  // Importando Navbar
+import Navbar from "../Navbar/Navbar";
 
 const Header: React.FC = () => {
   const [isNavOpen, setIsNavOpen] = useState(false);
 
   const handleMenuClick = () => {
-    setIsNavOpen(!isNavOpen);  // Alterna el estado del menú
+    setIsNavOpen(!isNavOpen);  // Toggle the menu state
   };
 
   return (
@@ -75,22 +75,16 @@ const Header: React.FC = () => {
             transition: opacity 0.3s ease;
           }
 
-          /* Hide close icon initially and show it when active */
-          .close-icon {
-            position: absolute;
-            top: 0;
-            left: 0;
-            opacity: 0;
-            pointer-events: none;
+          .menu-icon, .close-icon {
+            display: none; /* Hide menu and close icons by default */
           }
 
           .icon-button.active .menu-icon {
-            opacity: 0; /* Hide menu icon when active */
+            display: none; /* Hide menu icon when active */
           }
 
           .icon-button.active .close-icon {
-            opacity: 1; /* Show close icon when active */
-            pointer-events: auto;
+            display: block; /* Show close icon when active */
           }
 
           @media (max-width: 768px) {
@@ -105,6 +99,28 @@ const Header: React.FC = () => {
             .icon-button img {
               max-width: 5vw;
             }
+
+            .cart-icon {
+              display: none; /* Hide cart icon on small screens */
+            }
+
+            .menu-icon {
+              display: block; /* Show menu icon on small screens */
+            }
+
+            .icon-button.active .menu-icon {
+              display: none; /* Hide menu icon when active */
+            }
+
+            .icon-button.active .close-icon {
+              display: block; /* Show close icon when active */
+            }
+          }
+
+          @media (min-width: 769px) {
+            .menu-button {
+              display: none; /* Hide menu button on large screens */
+            }
           }
         `}
       </style>
@@ -117,21 +133,21 @@ const Header: React.FC = () => {
           <div className="header__title">PIN</div>
         </div>
         <div className="header__icons">
-          <button className="icon-button">
-            <img src={ShopIcon} alt="Carrito de Compras" />
-          </button>
           <button
-            className={`icon-button ${isNavOpen ? "active" : ""}`}
+            className={`icon-button menu-button ${isNavOpen ? "active" : ""}`}
             onClick={handleMenuClick}
           >
             <img src={HamburgerIcon} alt="Menú" className="menu-icon" />
             <img src={CloseMenuIcon} alt="Cerrar" className="close-icon" />
           </button>
+          <button className="icon-button cart-icon">
+            <img src={ShopIcon} alt="Carrito de Compras" />
+          </button>
         </div>
       </header>
 
-      {/* Pasa isNavOpen como isVisible a Navbar */}
-      <Navbar isVisible={isNavOpen} />  {/* Ahora Navbar recibe la propiedad isVisible */}
+      {/* Pass isNavOpen as isVisible to Navbar */}
+      <Navbar isVisible={isNavOpen} />  {/* Navbar now receives the isVisible prop */}
     </>
   );
 };
