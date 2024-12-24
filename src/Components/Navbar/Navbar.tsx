@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link for routing
 
 // Array of menu items with name and route
 const menuItems = [
@@ -107,7 +108,8 @@ const Navbar: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
         <ul>
           {menuItems.map((item, index) => (
             <li key={index}>
-              <a href={item.route}>{item.name}</a>
+              {/* Use Link instead of a tag for internal routing */}
+              <Link to={item.route}>{item.name}</Link>
             </li>
           ))}
         </ul>
