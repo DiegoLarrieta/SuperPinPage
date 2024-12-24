@@ -8,7 +8,10 @@ import CloseMenuIcon from "./Icons/icons8-less-than-100.png"
 
 import NavidadPromo from "./Promo/NavidadPromo.avif"
 
-import SPin6 from "./ProductImages/spin6.jpg"
+import SpinADN from "./ProductImages/SUPERPIN8.jpg"
+import SpinBeSmall from "./ProductImages/spinbelite1.jpg"
+import SpinBeBig from "./ProductImages/maquina3.jpg"
+import Spin6 from "./ProductImages/spin6.jpg"
 export {
   LogoBlanco,
   LogoNegro,
@@ -17,5 +20,8 @@ export {
   ShopIcon,
   HamburgerIcon,
   NavidadPromo,
-  SPin6
+  Spin6,
+  SpinADN,
+  SpinBeSmall,
+  SpinBeBig
 }
