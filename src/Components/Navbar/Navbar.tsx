@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+
 
 // Array de botones del menú con nombre y ruta.
 const menuItems = [
@@ -10,12 +10,8 @@ const menuItems = [
 ];
 
 const Navbar: React.FC<{ isVisible: boolean }> = ({ isVisible }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Función para manejar la apertura y cierre del menú
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   return (
     <>
