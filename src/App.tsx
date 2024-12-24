@@ -11,7 +11,8 @@ const App: React.FC = () => {
       <Header />
       <Promo />
       <ModelViewer modelPath="/models/cartera.glb" /> {/* Update the path to your model file */}
-      <Footer />
+      <Footer/>
+      
     </div>
   );
 };

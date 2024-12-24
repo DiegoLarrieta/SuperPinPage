@@ -1,7 +1,14 @@
-import { LogoBlanco, ShopIcon, HamburgerIcon} from "../../assets/images";
-import React from "react";
+import { LogoBlanco, ShopIcon, HamburgerIcon, CloseMenuIcon } from "../../assets/images";
+import React, { useState } from "react";
+import Navbar from "../Navbar/Navbar";  // Importando Navbar
 
 const Header: React.FC = () => {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const handleMenuClick = () => {
+    setIsNavOpen(!isNavOpen);  // Alterna el estado del menú
+  };
+
   return (
     <>
       <style>
@@ -9,7 +16,7 @@ const Header: React.FC = () => {
           @import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
 
           body {
-            margin: 0; /* Remove default margin to avoid spacing issues */
+            margin: 0;
           }
 
           .header {
@@ -22,14 +29,14 @@ const Header: React.FC = () => {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding:10px 30px;
+            padding: 10px 30px;
             background-color: black;
             box-sizing: border-box;
             transition: top 0.3s;
           }
 
           .header__logo img {
-            max-width: 8vw; /* Use viewport width for responsiveness */
+            max-width: 8vw;
           }
 
           .header__title-container {
@@ -37,7 +44,7 @@ const Header: React.FC = () => {
             display: flex;
             flex-direction: column;
             align-items: center;
-            flex: 3; /* Increase flex value to make it bigger */
+            flex: 3;
           }
 
           .header__title {
@@ -46,13 +53,13 @@ const Header: React.FC = () => {
             color: white;
             margin: 0;
             line-height: 1;
-            margin: 0; /* Remove any default margin */
           }
 
           .header__icons {
             display: flex;
             justify-content: flex-end;
-            gap: 20px; /* Adds consistent spacing between the buttons */
+            gap: 20px;
+            position: relative;
           }
 
           .icon-button {
@@ -60,10 +67,30 @@ const Header: React.FC = () => {
             border: none;
             padding: 5px;
             cursor: pointer;
+            position: relative;
           }
 
           .icon-button img {
             max-width: 3vw;
+            transition: opacity 0.3s ease;
+          }
+
+          /* Hide close icon initially and show it when active */
+          .close-icon {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            pointer-events: none;
+          }
+
+          .icon-button.active .menu-icon {
+            opacity: 0; /* Hide menu icon when active */
+          }
+
+          .icon-button.active .close-icon {
+            opacity: 1; /* Show close icon when active */
+            pointer-events: auto;
           }
 
           @media (max-width: 768px) {
@@ -71,17 +98,14 @@ const Header: React.FC = () => {
               font-size: 10vw;
             }
 
-          .header__logo img {
-            max-width: 10vw; /* Use viewport width for responsiveness */
-          }
+            .header__logo img {
+              max-width: 10vw;
+            }
 
-          .icon-button img {
-            max-width: 5vw;
+            .icon-button img {
+              max-width: 5vw;
+            }
           }
-          .cart-icon {
-            display: none; /* Hide cart icon */
-          }
-          
         `}
       </style>
       <header className="header">
@@ -96,11 +120,18 @@ const Header: React.FC = () => {
           <button className="icon-button">
             <img src={ShopIcon} alt="Carrito de Compras" />
           </button>
-          <button className="icon-button">
-            <img src={HamburgerIcon} alt="Menú" />
+          <button
+            className={`icon-button ${isNavOpen ? "active" : ""}`}
+            onClick={handleMenuClick}
+          >
+            <img src={HamburgerIcon} alt="Menú" className="menu-icon" />
+            <img src={CloseMenuIcon} alt="Cerrar" className="close-icon" />
           </button>
         </div>
       </header>
+
+      {/* Pasa isNavOpen como isVisible a Navbar */}
+      <Navbar isVisible={isNavOpen} />  {/* Ahora Navbar recibe la propiedad isVisible */}
     </>
   );
 };
