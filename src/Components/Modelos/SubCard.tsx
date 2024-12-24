@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import Stars from "../Stars/Stars";
+import AddToCartButton from "../Button/AddToCard";
 
 // Component to display each model's information
 const SubCard: React.FC<{ model: { modelName: string; images: string[]; features: string[] } }> = ({
@@ -29,11 +31,21 @@ const SubCard: React.FC<{ model: { modelName: string; images: string[]; features
             color: #555; /* Adjust the color for features */
             margin-bottom: 0.8rem; /* Adjust the spacing between feature items */
           }
+          .stars-container {
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            margin-top: 1rem; /* Adjust margin for spacing */
+          }
+          .add-to-cart-container {
+            margin-top: 1rem; /* Adjust margin for spacing */
+          }
         `}
       </style>
 
       <div className="sub-card">
         <h3>{model.modelName}</h3>
+        
         <div className="carousel">
           {model.images.map((image, index) => (
             <img
@@ -56,6 +68,12 @@ const SubCard: React.FC<{ model: { modelName: string; images: string[]; features
             <li key={index}>{feature}</li>
           ))}
         </ul>
+        <div className="stars-container">
+          <Stars value={5}/>
+        </div>
+        <div className="add-to-cart-container">
+          <AddToCartButton />
+        </div>
       </div>
     </>
   );

@@ -12,6 +12,8 @@ import SpinADN from "./ProductImages/SUPERPIN8.jpg"
 import SpinBeSmall from "./ProductImages/spinbelite1.jpg"
 import SpinBeBig from "./ProductImages/maquina3.jpg"
 import Spin6 from "./ProductImages/spin6.jpg"
+import Spin95main from "./ProductImages/B09LGSD9BP.SIDE.jpg"
+import Spin76main from "./ProductImages/pin_7.6mm_imagen_ofc-removebg-preview-removebg-preview.png"
 export {
   LogoBlanco,
   LogoNegro,
@@ -23,5 +25,7 @@ export {
   Spin6,
   SpinADN,
   SpinBeSmall,
-  SpinBeBig
+  SpinBeBig,
+  Spin76main,
+  Spin95main,
 }

@@ -1,33 +1,40 @@
 import React from "react";
 import SubCard from "./SubCard"; // Import the SubCard component
-import { SpinADN, Spin6, SpinBeSmall, SpinBeBig } from "../../assets/images";
+import { 
+  SpinADN, 
+  Spin6, 
+  SpinBeSmall, 
+  SpinBeBig,
+  Spin76main,
+  Spin95main,
+} from "../../assets/images";
 
 // Sample data for the models
 const modelData = [
   {
     modelName: " SuperPin 9.5mm ",
     images: [
-      SpinADN, 
-      Spin6, 
-      SpinBeSmall,
+      Spin95main, 
+      SpinBeBig, 
+      SpinADN,
     ],
     features: [
-      "Feature 1 for 9.5mm",
-      "Feature 2 for 9.5mm",
-      "Feature 3 for 9.5mm"
+      "Diseñado para máquinas de placas grandes: Su diámetro de 9.5 mm se adapta a equipos de mayor tamaño.",
+      "Ideal para entrenamientos exigentes: Soporta más peso, perfecto para rutinas de alta intensidad.",
+      "Construcción sólida: Fabricado con acero resistente y polímero técnico de alto rendimiento"
     ]
   },
   {
     modelName: " SuperPin 7.6 mm ",
     images: [
-      SpinADN, 
+      Spin76main, 
+      SpinBeSmall,
       Spin6,
-      SpinBeBig
     ],
     features: [
-      "Feature 1 for 7.6mm",
-      "Feature 2 for 7.6mm",
-      "Feature 3 for 7.6mm"
+      "Medida universal: Su diámetro de 7.6 mm se ajusta a la mayoría de máquinas de gimnasio.",
+      "El más vendido: La opción favorita por su versatilidad y fácil adaptación a diferentes equipos de gimnasio.",
+      "Diseño ligero: Su peso reducido facilita el manejo y transporte para entrenar donde quieras."
     ]
   }
 ];
