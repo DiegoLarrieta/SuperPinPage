@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "./Card";
+import Card from "./MotivosCard";
 import { SpinADN, Spin6, SpinBeSmall, SpinBeBig } from "../../assets/images";
 
 // Sample data for the cards
@@ -26,7 +26,7 @@ const cardData = [
   }
 ];
 
-const CardList: React.FC = () => {
+const MotivosCardList: React.FC = () => {
   return (
     <>
       <style>
@@ -63,4 +63,4 @@ const CardList: React.FC = () => {
   );
 };
 
-export default CardList;
+export default MotivosCardList;

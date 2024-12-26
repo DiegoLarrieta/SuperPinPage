@@ -6,7 +6,7 @@ interface CardProps {
   description: string;
 }
 
-const Card: React.FC<CardProps> = ({ title, image, description }) => {
+const MotivosCard: React.FC<CardProps> = ({ title, image, description }) => {
   return (
     <div className="card">
       <style>
@@ -47,4 +47,4 @@ const Card: React.FC<CardProps> = ({ title, image, description }) => {
   );
 };
 
-export default Card;
+export default MotivosCard;

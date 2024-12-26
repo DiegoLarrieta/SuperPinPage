@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineShoppingCart } from "react-icons/ai"; // Cart Icon
+import { useCart } from "../Context/CartContext";
 
-const AddToCartButton: React.FC = () => {
+const AddToCartButton: React.FC<{ product: { id: string; modelName: string; price: number; image: string; quantity: number } }> = ({ product }) => {
   const [addedToCart, setAddedToCart] = useState(false);
+  const { addToCart } = useCart(); // Get addToCart function from context
 
   const handleClick = () => {
-    setAddedToCart(true); // Trigger the animation when clicked
+    addToCart(product); // Add the product to the cart when clicked
+    setAddedToCart(true);
   };
 
   return (
     <div className="button" style={{ position: "relative", display: "inline-block" }}>
-      <motion.button className="button-elements"
+      <motion.button
+        className="button-elements"
         onClick={handleClick}
         style={{
           padding: "10px 20px",
           display: "flex",
-          justifyContent: "space-between", // Distribute the space evenly between the elements
-          alignItems: "center", // Vertically center the items
+          justifyContent: "space-between",
+          alignItems: "center",
           border: "none",
           backgroundColor: "#00bfff",
           color: "#fff",
@@ -27,11 +31,10 @@ const AddToCartButton: React.FC = () => {
           overflow: "hidden",
         }}
       >
-        {/* Display "Add to Cart" initially */}
         {!addedToCart && (
           <>
             <AiOutlineShoppingCart className="cart-icon" style={{ marginRight: "10px" }} />
-            <motion.span className="cart-text"
+            <motion.span
               initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5 }}
@@ -41,10 +44,8 @@ const AddToCartButton: React.FC = () => {
           </>
         )}
 
-        {/* Display "Added" after click */}
         {addedToCart && (
           <>
-            {/* Cart moving animation */}
             <motion.div
               initial={{ x: 0 }}
               animate={{ x: "100px" }}
@@ -58,12 +59,11 @@ const AddToCartButton: React.FC = () => {
               <AiOutlineShoppingCart style={{ marginRight: "10px" }} />
             </motion.div>
 
-            {/* Text animation */}
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{
-                delay: 1, // Add a delay so it appears after the cart animation
+                delay: 1,
                 duration: 0.5,
               }}
               style={{ marginLeft: "0px" }}

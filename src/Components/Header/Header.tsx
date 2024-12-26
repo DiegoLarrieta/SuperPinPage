@@ -144,9 +144,11 @@ const Header: React.FC = () => {
             <img src={HamburgerIcon} alt="Menú" className="menu-icon" />
             <img src={CloseMenuIcon} alt="Cerrar" className="close-icon" />
           </button>
-          <button className="icon-button cart-icon">
-            <img src={ShopIcon} alt="Carrito de Compras" />
-          </button>
+          <Link to ="/checkout">
+            <button className="icon-button cart-icon">
+              <img src={ShopIcon} alt="Carrito de Compras" />
+            </button>
+          </Link>
         </div>
       </header>
 
