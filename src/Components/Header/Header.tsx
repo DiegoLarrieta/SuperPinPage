@@ -1,6 +1,7 @@
-import { LogoBlanco, ShopIcon, HamburgerIcon, CloseMenuIcon } from "../../assets/images";
+import { LogoBlanco, HamburgerIcon, CloseMenuIcon } from "../../assets/images";
 import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
+import CartIcon from "../Button/CartIcon";
 import { Link } from "react-router-dom"; // Import Link for routing
 
 
@@ -132,10 +133,12 @@ const Header: React.FC = () => {
             <img src={LogoBlanco} alt="Logo" />
           </Link>
         </div>
-        <div className="header__title-container">
-          <div className="header__title">SUPER</div>
-          <div className="header__title">PIN</div>
-        </div>
+        <Link to="/">
+          <div className="header__title-container">
+            <div className="header__title">SUPER</div>
+            <div className="header__title">PIN</div>
+          </div>
+        </Link>
         <div className="header__icons">
           <button
             className={`icon-button menu-button ${isNavOpen ? "active" : ""}`}
@@ -144,11 +147,9 @@ const Header: React.FC = () => {
             <img src={HamburgerIcon} alt="Menú" className="menu-icon" />
             <img src={CloseMenuIcon} alt="Cerrar" className="close-icon" />
           </button>
-          <Link to ="/checkout">
-            <button className="icon-button cart-icon">
-              <img src={ShopIcon} alt="Carrito de Compras" />
-            </button>
-          </Link>
+          <button className="icon-button cart-icon">
+            <CartIcon /> {/* Usamos el componente CartIcon directamente */}
+          </button>
         </div>
       </header>
 

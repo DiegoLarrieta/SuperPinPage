@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineShoppingCart } from "react-icons/ai"; // Cart Icon
 import { useCart } from "../Context/CartContext";
+import CartIcon from "./CartIcon";
 
 // Definimos el tipo que solo usa las propiedades necesarias
 interface AddToCartProduct {
@@ -15,6 +16,7 @@ interface AddToCartProduct {
 const AddToCartButton: React.FC<{ product: AddToCartProduct }> = ({ product }) => {
   const [addedToCart, setAddedToCart] = useState(false);
   const { cart, addToCart } = useCart(); // Get addToCart function from context
+  const [showCartButton, setShowCartButton] = useState(false); // Controlar el botón de carrito
 
   useEffect(() => {
     // Verificamos si el producto ya está en el carrito
@@ -36,10 +38,15 @@ const AddToCartButton: React.FC<{ product: AddToCartProduct }> = ({ product }) =
 
     console.log("Product with full details:", productWithFullDetails); // Verifica el producto con todos los datos antes de agregarlo al carrito
 
-    addToCart(productWithFullDetails, product.quantity); // Agregar al carrito
+    addToCart(productWithFullDetails, product.quantity); // Usamos el estado quantity
     setAddedToCart(true); // Actualizamos el estado para mostrar el mensaje "Added"
 
     console.log("Cart after adding product:", cart); // Verifica el carrito después de agregar el producto
+
+    // Después de que termine la animación, mostramos el botón de carrito
+    setTimeout(() => {
+      setShowCartButton(true);
+    }, 1500); // Aparece el botón después de 1.5 segundos
   };
 
   return (
@@ -118,6 +125,30 @@ const AddToCartButton: React.FC<{ product: AddToCartProduct }> = ({ product }) =
           </>
         )}
       </motion.button>
+      {showCartButton && (
+        <motion.div
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.5 }}
+          style={{
+            position: "absolute",
+            top: "50%",
+            right: "-50px",
+            transform: "translateY(-50%)",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            backgroundColor: "#00bfff",
+            color: "#fff",
+            borderRadius: "5px",
+            padding: "10px 20px",
+            cursor: "pointer",
+            height: "100%",
+          }}
+        >
+          <CartIcon />
+        </motion.div>
+      )}
     </div>
   );
 };

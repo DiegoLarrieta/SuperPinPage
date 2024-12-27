@@ -1,20 +1,26 @@
-import React from 'react';
-import { Product } from '../../data/Products'; // Importar la interfaz Product desde Products.ts
-import Stars from '../Stars/Stars';
-import Quantity from '../Button/Quantity';
+import React, { useState } from 'react'; 
+import { Product } from '../../data/Products'; // Importar la interfaz Product desde Products.ts 
+import Stars from '../Stars/Stars'; 
+import Quantity from '../Button/Quantity'; 
 import AddToCartButton from '../Button/AddToCard';
 
-interface ProductDetailsCardProps {
-  product: Product; // Usamos la interfaz importada
+interface ProductDetailsCardProps { 
+  product: Product; // Usamos la interfaz importada 
 }
 
 const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
+  const [quantity, setQuantity] = useState<number>(1);  // Aquí agregamos el estado de la cantidad seleccionada
+
+  const handleQuantityChange = (newQuantity: number) => {
+    setQuantity(newQuantity);  // Actualiza la cantidad seleccionada
+  };
+
   // Crear un objeto con solo las propiedades necesarias para AddToCartButton
   const productForButton = {
     id: product.id,
     modelName: product.name,  // Aquí mantenemos `name` como `modelName`
     price: product.price,
-    quantity: product.quantity,
+    quantity: quantity,  // Usamos la cantidad que se maneja en el estado
     image: product.images[0], // Aquí agregamos la primera imagen
   };
 
@@ -94,7 +100,11 @@ const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
         <h1>{product.name}</h1>
         <div className="price">${product.price.toFixed(2)}</div>
         <Stars value={Number(product.stars)} reviews={product.reviews} />
-        <Quantity />
+
+        {/* Solo mostramos la cantidad una vez */}
+        <Quantity onQuantityChange={handleQuantityChange} />  {/* Pasamos la función onQuantityChange al componente Quantity */}
+
+        {/* El componente AddToCartButton recibe la cantidad del estado */}
         <AddToCartButton product={productForButton} />
         <div className="description">{product.description}</div>
       </div>
