@@ -16,6 +16,7 @@ export interface Product {
   description: string;
   stars:number;
   reviews:number;
+  quantity: number; // Nueva propiedad
 
 
 }
@@ -27,8 +28,9 @@ const products: Product[] = [
     price: 699,
     images: [Spin95main,  SpinBeBig, SpinADN],
     description: "The perfect pin for your weight stack. Durable and easy to use.",
-    stars : 5.0,
-    reviews: 10,
+    stars : 5,
+    reviews: 86,
+    quantity:1,
 
   },
   {
@@ -37,8 +39,9 @@ const products: Product[] = [
     price: 699,
     images: [Spin76main, SpinBeSmall,Spin6],
     description: "A smaller version of SuperPin, great for lighter weight stacks.",
-    stars : 5.0,
-    reviews: 100,
+    stars : 5,
+    reviews: 142,
+    quantity:1,
   },
 ];
 

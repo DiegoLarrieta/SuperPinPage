@@ -1,15 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { AiOutlineShoppingCart } from "react-icons/ai"; // Cart Icon
 import { useCart } from "../Context/CartContext";
 
-const AddToCartButton: React.FC<{ product: { id: string; modelName: string; price: number; image: string; quantity: number } }> = ({ product }) => {
+// Definimos el tipo que solo usa las propiedades necesarias
+interface AddToCartProduct {
+  id: string;
+  modelName: string;
+  price: number;
+  image: string;
+  quantity: number;
+}
+
+const AddToCartButton: React.FC<{ product: AddToCartProduct }> = ({ product }) => {
   const [addedToCart, setAddedToCart] = useState(false);
-  const { addToCart } = useCart(); // Get addToCart function from context
+  const { cart, addToCart } = useCart(); // Get addToCart function from context
+
+  useEffect(() => {
+    // Verificamos si el producto ya está en el carrito
+    const isProductInCart = cart.some(item => item.id === product.id);
+    setAddedToCart(isProductInCart);
+    console.log("Cart after checking:", cart); // Verifica el carrito después de verificar si el producto ya está presente
+  }, [cart, product.id]);
 
   const handleClick = () => {
-    addToCart(product); // Add the product to the cart when clicked
-    setAddedToCart(true);
+    // Completar el producto con los valores necesarios
+    const productWithFullDetails = {
+      ...product,
+      name: product.modelName, // Derivamos el nombre del modelo
+      images: [product.image], // Asumimos que solo tienes una imagen
+      description: "Descripción no disponible", // Valor predeterminado
+      stars: 0, // Valor predeterminado para las estrellas
+      reviews: 0, // Valor predeterminado para los comentarios
+    };
+
+    console.log("Product with full details:", productWithFullDetails); // Verifica el producto con todos los datos antes de agregarlo al carrito
+
+    addToCart(productWithFullDetails, product.quantity); // Agregar al carrito
+    setAddedToCart(true); // Actualizamos el estado para mostrar el mensaje "Added"
+
+    console.log("Cart after adding product:", cart); // Verifica el carrito después de agregar el producto
   };
 
   return (
@@ -33,7 +63,13 @@ const AddToCartButton: React.FC<{ product: { id: string; modelName: string; pric
       >
         {!addedToCart && (
           <>
-            <AiOutlineShoppingCart className="cart-icon" style={{ marginRight: "10px" }} />
+            <AiOutlineShoppingCart 
+            className="cart-icon"
+            style={{
+              marginRight: "10px",
+              display: "inline-block",
+              }} 
+            />
             <motion.span
               initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
@@ -56,7 +92,11 @@ const AddToCartButton: React.FC<{ product: { id: string; modelName: string; pric
                 damping: 25,
               }}
             >
-              <AiOutlineShoppingCart style={{ marginRight: "10px" }} />
+              <AiOutlineShoppingCart 
+                style={{
+                  marginRight: "10px" 
+                }}
+              />
             </motion.div>
 
             <motion.span
@@ -66,7 +106,12 @@ const AddToCartButton: React.FC<{ product: { id: string; modelName: string; pric
                 delay: 1,
                 duration: 0.5,
               }}
-              style={{ marginLeft: "0px" }}
+              style={{
+                display: "flex",        // Utilizamos flexbox para centrar el texto
+                justifyContent: "center",  // Asegura que el contenido se centre horizontalmente
+                alignItems: "center",   // Asegura que el contenido se centre verticalmente
+                marginLeft: "0px",      // Eliminar cualquier margen izquierdo
+              }}
             >
               Added
             </motion.span>

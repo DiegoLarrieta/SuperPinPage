@@ -1,10 +1,10 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
-import products, { Product } from '../../data/Products'; // Importa el archivo de productos
+import  { Product } from '../../data/Products'; // Importa el archivo de productos
 
 // Define el tipo de contexto
 interface CartContextType {
   cart: Product[];
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, quantity: number) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
 }
@@ -17,19 +17,21 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
   const [cart, setCart] = useState<Product[]>([]);
 
   // Función para agregar productos al carrito
-  const addToCart = (product: Product) => {
+  const addToCart = (product: Product, quantity: number) => {
+    if (quantity <= 0) return; // Prevenir agregar cantidades inválidas
+
     setCart((prevCart) => {
       const existingProduct = prevCart.find(item => item.id === product.id);
       if (existingProduct) {
         // Si el producto ya está, solo incrementamos la cantidad
         return prevCart.map(item =>
           item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? { ...item, quantity: item.quantity + quantity } // Incrementar la cantidad en lugar de establecerla a 1
             : item
         );
       } else {
-        // Si el producto no está en el carrito, lo agregamos
-        return [...prevCart, { ...product, quantity: 1 }];
+        // Si el producto no está en el carrito, lo agregamos con la cantidad especificada
+        return [...prevCart, { ...product, quantity }];
       }
     });
   };
@@ -41,6 +43,7 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   // Función para actualizar la cantidad de un producto
   const updateQuantity = (id: string, quantity: number) => {
+    if (quantity <= 0) return; // Evitar cantidades inválidas
     setCart((prevCart) =>
       prevCart.map(item =>
         item.id === id ? { ...item, quantity } : item

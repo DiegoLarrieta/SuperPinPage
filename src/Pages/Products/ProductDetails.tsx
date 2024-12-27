@@ -3,6 +3,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import products from '../../data/Products'; // Asegúrate de que la ruta sea correcta
 import ProductDetailsCard from '../../Components/ProductDetails/ProductDetailsCard';
+import Header from '../../Components/Header/Header';
 
 const ProductDetails: React.FC = () => {
   const { productId } = useParams(); // Obtener el ID del producto desde la URL
@@ -15,9 +16,12 @@ const ProductDetails: React.FC = () => {
   }
 
   return (
-    <div className="product-details">
-      <ProductDetailsCard product={product} />
-    </div>
+    <>
+      <Header /> {/* Use the Header component here */}
+      <div className="product-details">
+        <ProductDetailsCard product={product} />
+      </div>
+    </>
   );
 };
 

@@ -1,12 +1,23 @@
-// src/Components/ProductDetailsCard/ProductDetailsCard.tsx
 import React from 'react';
 import { Product } from '../../data/Products'; // Importar la interfaz Product desde Products.ts
+import Stars from '../Stars/Stars';
+import Quantity from '../Button/Quantity';
+import AddToCartButton from '../Button/AddToCard';
 
 interface ProductDetailsCardProps {
   product: Product; // Usamos la interfaz importada
 }
 
 const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
+  // Crear un objeto con solo las propiedades necesarias para AddToCartButton
+  const productForButton = {
+    id: product.id,
+    modelName: product.name,  // Aquí mantenemos `name` como `modelName`
+    price: product.price,
+    quantity: product.quantity,
+    image: product.images[0], // Aquí agregamos la primera imagen
+  };
+
   return (
     <div className="product-details-card">
       <style>
@@ -33,6 +44,9 @@ const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
           .product-info {
             flex: 1;
             max-width: 45%;
+            display: flex;
+            flex-direction: column; /* Apilar los elementos verticalmente */
+            align-items: flex-start; /* Alinear todo a la izquierda */
           }
 
           .product-info h1 {
@@ -79,6 +93,9 @@ const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
       <div className="product-info">
         <h1>{product.name}</h1>
         <div className="price">${product.price.toFixed(2)}</div>
+        <Stars value={Number(product.stars)} reviews={product.reviews} />
+        <Quantity />
+        <AddToCartButton product={productForButton} />
         <div className="description">{product.description}</div>
       </div>
     </div>
