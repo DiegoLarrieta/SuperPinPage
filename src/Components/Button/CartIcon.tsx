@@ -12,7 +12,7 @@ const CartIcon: React.FC = () => {
   return (
     <Link to="/cart">
       <div style={{ position: "relative", display: "inline-block" }}>
-      <AiOutlineShoppingCart style={{ fontSize: "50px", color: "white" }} />
+      <AiOutlineShoppingCart style={{ fontSize: "40px", color: "white" }} />
       
       {/* Mostrar el contador de artículos sobre el icono */}
       {totalItems > 0 && (
@@ -25,7 +25,7 @@ const CartIcon: React.FC = () => {
             color: "#fff",
             borderRadius: "50%",
             padding: "5px 10px",
-            fontSize: "30px",
+            fontSize: "20px",
             fontWeight: "bold",
           }}
         >
