@@ -26,7 +26,7 @@ const Main: React.FC = () => {
       <div className="MainPage">
         <Header />
         <Promo />
-        <ModelViewer modelPath="/models/cartera.glb" /> {/* Update the path to your model file */}
+        <ModelViewer modelPath="/Models/cartera.glb" /> {/* Update the path to your model file */}
         {/* Removed Modelos */}
         {/* Removed CardList */}
         <Productos />
