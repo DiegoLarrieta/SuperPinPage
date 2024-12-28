@@ -1,4 +1,4 @@
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 import { Product } from '../../data/Products'; // Importar la interfaz Product desde Products.ts 
 import Stars from '../Stars/Stars'; 
 import Quantity from '../Button/Quantity'; 
@@ -10,9 +10,26 @@ interface ProductDetailsCardProps {
 
 const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
   const [quantity, setQuantity] = useState<number>(1);  // Aquí agregamos el estado de la cantidad seleccionada
+  const [currentImageIndex, setCurrentImageIndex] = useState<number>(0); // Estado para la imagen actual
 
   const handleQuantityChange = (newQuantity: number) => {
     setQuantity(newQuantity);  // Actualiza la cantidad seleccionada
+  };
+
+  const handleNextImage = () => {
+    if (currentImageIndex < product.images.length - 1) {
+      setCurrentImageIndex(currentImageIndex + 1);
+    } else {
+      setCurrentImageIndex(0); // Volver al principio si ya estamos en la última imagen
+    }
+  };
+
+  const handlePrevImage = () => {
+    if (currentImageIndex > 0) {
+      setCurrentImageIndex(currentImageIndex - 1);
+    } else {
+      setCurrentImageIndex(product.images.length - 1); // Volver al final si estamos en la primera imagen
+    }
   };
 
   // Crear un objeto con solo las propiedades necesarias para AddToCartButton
@@ -39,12 +56,18 @@ const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
           .product-images {
             flex: 1;
             max-width: 45%;
+            position: relative; /* Para posicionar los botones de navegación */
+            height: 400px; /* Altura fija para que todas las imágenes tengan el mismo tamaño */
+            width: 100%; /* Establecer el ancho 100% del contenedor */
+            overflow: hidden; /* Para ocultar cualquier parte de la imagen que sobresalga */
           }
 
           .product-images img {
             width: 100%;
-            border-radius: 8px;
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain; /* Ajustar la imagen dentro del contenedor sin deformarse */
+            transition: opacity 0.5s ease-in-out;
+            
           }
 
           .product-info {
@@ -58,6 +81,7 @@ const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
           .product-info h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
+            color: #333;
           }
 
           .product-info p {
@@ -73,7 +97,37 @@ const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
 
           .product-info .description {
             font-size: 1.1rem;
-            color: #555;
+            color: #333;
+            padding-top: 1rem;
+          }
+
+          .product-info .description strong {
+            font-size: 1.2rem;
+            color: #000;
+            font-weight: bold;
+          }
+
+          .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+          }
+
+          .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 50%;
+          }
+
+          .carousel-controls button:hover {
+            background-color: rgba(0, 0, 0, 0.8);
           }
 
           /* Responsiveness */
@@ -89,11 +143,15 @@ const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
               text-align: center;
             }
           }
-        `} 
+        `}
       </style>
 
       <div className="product-images">
-        <img src={product.images[0]} alt={product.name} />
+        <img src={product.images[currentImageIndex]} alt={product.name} />
+        <div className="carousel-controls">
+          <button onClick={handlePrevImage}>←</button>
+          <button onClick={handleNextImage}>→</button>
+        </div>
       </div>
 
       <div className="product-info">
@@ -106,7 +164,8 @@ const ProductDetailsCard: React.FC<ProductDetailsCardProps> = ({ product }) => {
 
         {/* El componente AddToCartButton recibe la cantidad del estado */}
         <AddToCartButton product={productForButton} />
-        <div className="description">{product.description}</div>
+        <div className="description" dangerouslySetInnerHTML={{ __html: product.description }} />
+
       </div>
     </div>
   );

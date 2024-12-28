@@ -10,7 +10,7 @@ interface StarsProps {
 
 const Stars: React.FC<StarsProps> = ({ value, reviews }) => {
   return (
-    <Box sx={{ width: 200, display: 'flex', alignItems: 'center' }}>
+    <Box sx={{ width: 200, display: 'flex', alignItems: 'center' ,padding: '5px 0'}}>
       <Rating
         name="text-feedback"
         value={value}

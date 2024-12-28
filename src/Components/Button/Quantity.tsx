@@ -24,8 +24,8 @@ const Quantity: React.FC<QuantityProps> = ({ onQuantityChange }) => {
   };
 
   return (
-    <div>
-      <label>Cantidad</label>
+    <div style={{ padding: '10px 0'}}>
+      <label style={{color:'black'}}>Cantidad</label>
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', border: '1px solid #ccc', borderRadius: '5px', padding: '5px 10px', maxWidth: '150px', marginTop: '10px', marginBottom: '10px', backgroundColor:'black' }}>
         <button onClick={decrement} disabled={quantity <= 1} style={{ border: 'none', padding: '5px 10px', cursor: 'pointer', borderRadius: '5px', backgroundColor:'black', flex: 1 }}>
           -

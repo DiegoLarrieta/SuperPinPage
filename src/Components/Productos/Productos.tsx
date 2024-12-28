@@ -73,7 +73,7 @@ const Productos: React.FC = () => {
         `}
       </style>
       <div className="productos-container">
-        <h2>Featured Products</h2>
+        <h2>Productos</h2>
         <div className="productos-grid">
           {products.map((product) => (
             <ProductosCard key={product.id} product={product} />
