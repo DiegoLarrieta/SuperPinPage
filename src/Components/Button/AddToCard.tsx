@@ -16,7 +16,6 @@ interface AddToCartProduct {
 const AddToCartButton: React.FC<{ product: AddToCartProduct }> = ({ product }) => {
   const [addedToCart, setAddedToCart] = useState(false);
   const { cart, addToCart } = useCart(); // Get addToCart function from context
-  const [showCartButton, setShowCartButton] = useState(false); // Controlar el botón de carrito
   const [resetButton, setResetButton] = useState(false); // Estado para reiniciar el botón después de la animación
   const [showCartIcon, setShowCartIcon] = useState(false); // Estado para mostrar el CartIcon
 
