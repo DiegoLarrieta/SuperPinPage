@@ -6,6 +6,8 @@ import ComoFunciona from '../Pages/ComoFunciona/ComoFunciona';
 import CartPage from '../Pages/Cart/Cart';
 import ProductDetails from '../Pages/Products/ProductDetails';
 import Checkout from '../Pages/Checkout/Checkout';
+import PoliticaEnvios from '../Pages/Politicas/Envios';
+import PoliticaPrivacidad from '../Pages/Politicas/Privacidad';
 
 
 const AppRoutes: React.FC = () => {
@@ -17,6 +19,8 @@ const AppRoutes: React.FC = () => {
       <Route path="/cart" element={<CartPage/>} />
       <Route path="/products/:productId" element={<ProductDetails />} />
       <Route path="/checkout" element={<Checkout />} />
+      <Route path="/politicas-envio" element={<PoliticaEnvios />} />
+      <Route path="/politicas-privacidad" element={<PoliticaPrivacidad />} />
     </Routes>
   );
 };
