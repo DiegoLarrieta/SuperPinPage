@@ -20,6 +20,7 @@ const OrderSummary: React.FC = () => {
           }
 
           .order-summary h2 {
+            color: black;
             font-size: 1.5rem;
             margin-bottom: 1rem;
           }
@@ -44,6 +45,9 @@ const OrderSummary: React.FC = () => {
           .order-summary-item-details {
             flex: 1;
             margin-left: 1rem;
+          }
+          .order-summary-item-details p {
+            color: black;
           }
 
           .order-summary-total p {
