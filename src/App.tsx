@@ -3,6 +3,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import "./App.css"; // Global CSS file
 import { CartProvider } from "./Components/Context/CartContext";
 
+
 import AppRoutes from "./Routes/AppRoutes"; // Import the AppRoutes component
 
 const App: React.FC = () => {

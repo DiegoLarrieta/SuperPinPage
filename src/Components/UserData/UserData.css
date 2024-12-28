@@ -1,0 +1,89 @@
+/* UserData.css */
+.userdata-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 2rem;
+    max-width: 100%;
+    margin: 0 auto;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .userdata-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+  }
+  
+  /* Estilo para los campos del formulario */
+  .userdata-input-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .userdata-input-group label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .userdata-input-group input,
+  .userdata-input-group select {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .userdata-input-group input:focus,
+  .userdata-input-group select:focus {
+    border-color: #00bfff;
+    outline: none;
+  }
+  
+  .userdata-input-group input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+  }
+  
+  .userdata-input-group .checkbox-label {
+    display: inline-block;
+    font-size: 0.9rem;
+    margin-left: 10px;
+  }
+  
+  /* Estilo para los botones */
+  .userdata-container button {
+    background-color: #00bfff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+    box-sizing: border-box;
+  }
+  
+  .userdata-container button:hover {
+    background-color: #0088cc;
+  }
+  
+  /* Responsividad para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .userdata-input-group {
+      grid-template-columns: 1fr; /* Cambiar a una sola columna en pantallas pequeñas */
+    }
+  
+    .userdata-container button {
+      width: 100%;
+    }
+  }
+  
