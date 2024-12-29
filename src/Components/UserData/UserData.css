@@ -5,10 +5,28 @@
     gap: 1rem;
     padding: 2rem;
     max-width: 100%;
-    margin: 0 auto;
+    margin: 2px auto;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .userdata-container input {
+    padding: 12px 15px; /* Aumentar el padding para hacer los inputs más grandes */
+    border: 1px solid #333; /* Bordes negros */
+    border-radius: 8px; /* Borde redondeado */
+    font-size: 1rem; /* Ajuste de tamaño de texto */
+    width: 100%; /* Asegurar que el input ocupe todo el espacio disponible */
+    box-sizing: border-box; /* Asegurar que el padding no afecte el tamaño del contenedor */
+    background-color: #fff; /* Fondo blanco */
+    transition: all 0.3s ease; /* Agregar transición para efectos de enfoque */
+    margin: 1rem 0;
+  }
+  
+  /* Cambios en los campos cuando están enfocados */
+  .userdata-container input:focus {
+    border-color: #00bfff; /* Cambiar el color del borde al hacer foco */
+    outline: none; /* Eliminar el contorno por defecto */
   }
   
   .userdata-container h2 {

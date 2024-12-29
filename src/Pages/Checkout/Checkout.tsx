@@ -50,14 +50,15 @@ const Checkout: React.FC = () => {
       </style>
       <Header />
       <div className="checkout-container">
-        {/* Order Summary */}
-        <div className="checkout-summary">
-          <OrderSummary />
-        </div>
 
         {/* User Data */}
         <div className="checkout-form">
           <UserData userData={userData} setUserData={setUserData} />
+        </div>
+
+        {/* Order Summary */}
+        <div className="checkout-summary">
+          <OrderSummary />
         </div>
 
         {/* Place Order Button */}
