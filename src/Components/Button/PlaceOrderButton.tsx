@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { useCart } from '../Context/CartContext'; // Para acceder al carrito
 import { AiOutlineCheckCircle } from 'react-icons/ai'; // Ícono de confirmación
+import WhatsappWarning from '../WhatsappWarning/WhatsappWarning'; // Importa el componente WhatsAppWarning
 
 const PlaceOrderButton: React.FC<{ userData: any }> = ({ userData }) => {
   const { cart } = useCart(); // Obtener los productos del carrito
   const [orderSuccess, setOrderSuccess] = useState(false);
+  const [showWarning, setShowWarning] = useState(false); // Estado para controlar la visibilidad del WhatsAppWarning
 
   // Función para guardar la orden y enviar por WhatsApp
   const handlePlaceOrder = () => {
@@ -58,16 +60,26 @@ const PlaceOrderButton: React.FC<{ userData: any }> = ({ userData }) => {
     const phoneNumber = "+525652828123";  // El número de WhatsApp de la empresa
     const whatsappLink = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
 
-    // Redirigir a WhatsApp
-    window.open(whatsappLink, '_blank');  // Abre el chat de WhatsApp en una nueva pestaña
-
     // Cambiar el estado para mostrar el éxito de la compra
     setOrderSuccess(true);
 
+    // Mostrar la advertencia de WhatsApp
+    setShowWarning(true);
+
+    // Retraso de 3 segundos antes de redirigir a WhatsApp
+    setTimeout(() => {
+      window.open(whatsappLink, '_blank');  // Abre el chat de WhatsApp en una nueva pestaña
+    }, 3000); // Espera 3 segundos antes de redirigir a WhatsApp
+
     // Verificar que la orden se haya guardado correctamente
     setTimeout(() => {
-        console.log('Order saved successfully:', JSON.parse(localStorage.getItem('orderDetails') || '{}'));
-      }, 2000); // Esto simula la verificación después de un pequeño retraso
+      console.log('Order saved successfully:', JSON.parse(localStorage.getItem('orderDetails') || '{}'));
+    }, 2000); // Esto simula la verificación después de un pequeño retraso
+
+    // Ocultar el WhatsAppWarning después de 4 segundos
+    setTimeout(() => {
+      setShowWarning(false);
+    }, 4000);
   };
 
   return (
@@ -113,6 +125,9 @@ const PlaceOrderButton: React.FC<{ userData: any }> = ({ userData }) => {
           </div>
         )}
       </div>
+
+      {/* Mostrar WhatsAppWarning si está activado */}
+      {showWarning && <WhatsappWarning />}
     </>
   );
 };
